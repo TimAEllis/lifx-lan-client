@@ -2,7 +2,7 @@ import {RemoteInfo} from 'dgram';
 import {EventEmitter} from 'eventemitter3';
 import {AddressInfo} from 'net';
 
-export class ClientOptions {
+export interface ClientOptions {
   /** The IPv4 address to bind to  */
   address: string = '0.0.0.0';
   /** The port to bind to */
@@ -29,7 +29,7 @@ export class ClientOptions {
   discoveryInterval: number = 5000;
 }
 
-export interface Client extends EventEmitter {
+export class Client extends EventEmitter {
 
   on(event: 'error', callback: (err: Error) => void): this;
   on(event: 'message', callback: (msg: any, info: RemoteInfo) => void): this;
@@ -305,7 +305,7 @@ export interface ColorValues {
   saturation: number;
 }
 
-export class constants {
+export const constants: {
   ACK_REQUIRED_BIT: number;
   ADDRESSABLE_BIT: number;
   APPLICATION_REQUEST_VALUES: {
